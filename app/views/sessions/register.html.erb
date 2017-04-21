@@ -1,0 +1,62 @@
+<div id="lender-reg">
+<form action='/lenders' method='POST'>
+	<fieldset>
+		<legend> LENDER REGISTRATION </legend>
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<br>
+		First Name:  
+		<input type='text' name=lender[first_name]>
+		<br><br>
+		Last Name:  
+		<input type='text' name=lender[last_name]>
+		<br><br>
+		Email: 
+		<input type='text' name=lender[email]>
+		<br><br>
+		Password:
+		<input type='password' name=lender[password]>
+		<br><br>
+		Money: $
+		<input type='number' name=lender[money]>
+		<br><br>
+		<input id="submit" type='submit' value='Register'>
+		<br><br>
+	</fieldset>
+	<br>
+	<a href="/login">Already a Member?</a>
+</form>
+</div>
+<div id="borrower-reg">
+<form action='/borrowers' method='POST'>
+	<fieldset>
+		<legend> BORROWER REGISTRATION </legend>
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<br>
+		First Name:  
+		<input type='text' name=borrower[first_name]>
+		<br><br>
+		Last Name:  
+		<input type='text' name=borrower[last_name]>
+		<br><br>
+		Email: 
+		<input type='text' name=borrower[email]>
+		<br><br>
+		Password:
+		<input type='password' name=borrower[password]>
+		<br><br>
+		Need Money For: 
+		<input type='text' name=borrower[loan_for]>
+		<br><br>
+		Description
+		<input type='text' name=borrower[description]>
+		<br><br>
+		Amount Needed: $
+		<input type='number' name=borrower[amount_needed]>
+		<br><br>
+		<input id="submit" type='submit' value='Register'>
+		<br><br>
+	</fieldset>
+	<br>
+	<a href="/login">Already a Member?</a>
+</form>
+</div>

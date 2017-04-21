@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RubyExam</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<style>
+
+#lender-reg, #borrower-reg, #login {
+	display: inline-block;
+	width: 400px;
+	vertical-align: top;
+}
+
+table tr:nth-child(odd) td{
+    background: #ffcdd6;
+    padding: 7px 20px;
+  }
+  
+table tr:nth-child(even) td{
+    background: #ffecef;
+    padding: 7px 20px;
+  }
+
+a {
+  color: #f91591;
+}
+
+</style>
+
+
+<body>
+<% if flash[:errors] %>
+  <% flash[:errors].each do |e| %>
+    <%= e %>
+ <br>
+  <% end %>
+<% end %>
+<%= yield %>
+
+</body>
+</html>

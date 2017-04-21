@@ -1,0 +1,30 @@
+<form action = "/borrowers/<%= @borrower.id %>" method = "post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<input type="hidden" name="_method" value="delete">
+	<input type="submit" name="Log Out" value = "Log Out">
+</form>
+<h2>Name: <%= @borrower.first_name %> <%= @borrower.last_name %></h2>
+<h2>Amount Needed: $<%= @borrower.amount_needed %></h2>
+<br>
+<br>
+<br>
+<h2>List of People Who Lent You Money </h2>
+
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Amount Lent</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @lended.each do |lend| %>
+		<tr>
+			<td><%= lend.lender.first_name %> <%= lend.lender.last_name %></td>
+			<td><%= lend.lender.email %></td>
+			<td>$<%= lend.money_lent %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

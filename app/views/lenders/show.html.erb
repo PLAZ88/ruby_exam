@@ -1,0 +1,69 @@
+<form action = "/lenders/<%= @lender.id %>" method = "post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<input type="hidden" name="_method" value="delete">
+	<input type="submit" name="Log Out" value = "Log Out">
+</form>
+<h2><%= @lender.first_name %> <%= @lender.last_name %></h2>
+<h2>Account Balance: $<%= @lender.money %></h2>
+<br>
+<br>
+<br>
+<h2>List of People who are in Need of Help:</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Money Needed For</th>
+			<th>Description</th>
+			<th>Amount Needed</th>
+			<th>Amount Received</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @all_borrowers.each do |borrower| %>
+		<tr>
+			<td><%= borrower.first_name %> <%= borrower.last_name %></td>
+			<td><%= borrower.loan_for %></td>
+			<td><%= borrower.description %></td>
+			<td>$<%= borrower.amount_needed %></td>
+			<td></td>
+			<td>
+				<form action = "/transactions" method = "post">
+				    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+				    <input type='number' name=transaction[money_lent]>
+				    <input type="hidden" name="transaction[borrower_id]" value ="<%= borrower.id %>">
+				    <input type="hidden" name="transaction[lender_id]" value ="<%= session[:user_id] %>">
+					<input type="submit" name="Lend" value = "Lend">		
+				</form>	
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<br><br><br>
+<h2>List of People You Lent Money to:</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Money Needed For</th>
+			<th>Description</th>
+			<th>Amount Needed</th>
+			<th>Amount Raised</th>
+			<th>Amount Lent</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @lended.each do |lend| %>
+		<tr>
+			<td><%= lend.borrower.first_name %> <%= lend.borrower.last_name %></td>
+			<td><%= lend.borrower.loan_for %></td>
+			<td><%= lend.borrower.description %></td>
+			<td>$<%= lend.borrower.amount_needed %></td>
+			<td></td>
+			<td>$<%= lend.money_lent %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
